@@ -1,4 +1,4 @@
-## 42_main_libft
+<h1 align="center">42_main_libft</h1>
 <div align="center">
 
 ### Here is a basic Makefile with some mains to evaluate the 42 libft project.
