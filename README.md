@@ -6,10 +6,10 @@
 
 This is, besides being a small project, my first contribution—if you can even call it that. I'm happy if you find it useful! It's a simple program, you just need to compile it with: 'cc auto_42_main.c' or 'gcc auto_42_main.c' and then use the compiled file.
 
-You can run the compiled file without any parameters, and it will create the compiled files in the same folder where your .c files are.
-1.If you only want to compile one function: './a.out ft_function', and it will only compile that function.
-2.If you want to delete all compiled files, just run: './a.out clean', and everything will be deleted.
-3.If you only want to delete a specific function, use: './a.out clean ft_function'.
+ You can run the compiled file without any parameters, and it will create the compiled files in the same folder where your .c files are.
+ 1.If you only want to compile one function: './a.out ft_function', and it will only compile that function.
+ 2.If you want to delete all compiled files, just run: './a.out clean', and everything will be deleted.
+ 3.If you only want to delete a specific function, use: './a.out clean ft_function'.
 </p1>
 <h2>What happens when a vampire tries to trick or treat in the snow? Frost bite!</h2>
   
