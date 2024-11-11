@@ -6,10 +6,19 @@ MAIN = mains/main_$(TARGET).c
 OBJECTS = src/$(TARGET).o
 OUT_DIR = ../
 HEADER = ../libft.h 
+DIR = src
+EXEC = auto_42_main.c
+NAME = mains
 
 .PHONY: all clean
 
-all: $(OUT_DIR)$(TARGET)
+all: $(NAME) $(DIR) $(OUT_DIR)$(TARGET)
+
+$(OUT_DIR)$(NAME): $(HEADER) $(EXEC)
+	$(CC) $(FLAGS) $(EXECT) -o $(NAME)
+
+$(DIR):
+	mkdir -p $(DIR)
 
 $(OUT_DIR)$(TARGET): $(OBJECTS) $(MAIN)
 	$(CC) $(FLAGS) $(MAIN) $(OBJECTS) -o $(OUT_DIR)$(TARGET)
