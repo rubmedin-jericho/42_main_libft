@@ -1,5 +1,5 @@
 
-<div align="center">
+<div>
 <h1 align="center">42_main_libft</h1>
 <h2> Here is a basic Makefile with some mains to evaluate the 42 libft project.</h2>
 
