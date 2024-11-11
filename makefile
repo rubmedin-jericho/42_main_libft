@@ -2,8 +2,8 @@ CC = gcc
 FLAGS = -Wall -Werror -Wextra
 TARGET ?= $(error "TARGET no especificado. Usa: make TARGET=<nombre>")
 SOURCE = $(OUT_DIR)$(TARGET).c
-MAIN = main_$(TARGET).c 
-OBJECTS = $(TARGET).o
+MAIN = mains/main_$(TARGET).c 
+OBJECTS = src/$(TARGET).o
 OUT_DIR = ../
 HEADER = ../libft.h 
 
@@ -15,7 +15,7 @@ $(OUT_DIR)$(TARGET): $(OBJECTS) $(MAIN)
 	$(CC) $(FLAGS) $(MAIN) $(OBJECTS) -o $(OUT_DIR)$(TARGET)
 
 
-$(TARGET).o: $(SOURCE) $(HEADER)
+src/$(TARGET).o: $(SOURCE) $(HEADER)
 	$(CC) $(FLAGS) -c $< -o $@
 
 clean:
