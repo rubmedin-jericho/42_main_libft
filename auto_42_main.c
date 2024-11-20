@@ -3,6 +3,9 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+#define ERROR 1
+#define SUCCES 0
+
 int	select_funct(char **s1, char *s2)
 {
 	int	i;
@@ -45,43 +48,47 @@ int	main(int argc, char **argv)
 	"ft_strdup"};
 
 	char	mk_target[50] = "make TARGET=";	
+	char	cd[50] = "cd makes && ";
 	char	tmp[50];
 	char	mk_clean[50] = "make clean TARGET=";
 	int	i = 0;
+	int	err_makefile = 0;
 
 	if(argc == 1)
 	{
 		while(i < 24)
 		{
 			memset(tmp, 0, sizeof(tmp));
-			strcpy(tmp, mk_target);
+			strcpy(tmp, cd);
+			strcat(tmp, mk_target);
 			strcat(tmp, basic_functions[i]);
-			system(tmp);
+			err_makefile = system(tmp);
 			i++;
 		}
 	}
-	else if(argc == 2 && (strcmp(argv[1], "clean") == 0))
+	else if(argc == 2 && (strcmp(argv[1], "clean") == SUCCES))
 	{
 		while(i < 24)		
 		{
 			memset(tmp, 0, sizeof(tmp));
-			strcpy(tmp, mk_clean);
+			strcpy(tmp, cd);
+			strcat(tmp, mk_clean);
 			strcat(tmp, basic_functions[i]);
-			system(tmp);
+			err_makefile = system(tmp);
 			memset(tmp, 0, 50);
 			i++;
 		}
 	}
-	else if(argc == 2 && (select_funct(basic_functions, argv[1]) != 0))
+	else if(argc == 2 && (select_funct(basic_functions, argv[1]) != SUCCES))
 	{
 		strcat(mk_target, basic_functions[(select_funct(basic_functions, argv[1])) - 1]);
-		system(mk_target);
+		err_makefile = system(mk_target);
 	}
-	else if(argc == 3 && (strcmp(argv[1], "clean") == 0) && (select_funct(basic_functions, argv[2]) != 0))
+	else if(argc == 3 && (strcmp(argv[1], "clean") == SUCCES) && (select_funct(basic_functions, argv[2]) != SUCCES))
 	{
 		strcat(mk_clean, basic_functions[(select_funct(basic_functions, argv[2])) - 1]);
-		system(mk_clean);
+		err_makefile = system(mk_clean);
 	}
 	printf("finish\n");
-	return (0);
+	return (SUCCES);
 }
