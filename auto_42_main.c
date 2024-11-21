@@ -5,6 +5,7 @@
 
 #define ERROR 1
 #define SUCCES 0
+#define MAKE_ERR_2 512
 
 int	select_funct(char **s1, char *s2)
 {
@@ -48,10 +49,13 @@ int	main(int argc, char **argv)
 	"ft_strdup"};
 
 	char	mk_target[50] = "make TARGET=";	
+	char	mk_target2[100] = "make -f makefile2 TARGET=";
+	char	mk_target3[50] = " TARGET_2=";
 	char	cd[50] = "cd makes && ";
 	char	tmp[50];
 	char	mk_clean[50] = "make clean TARGET=";
 	int	i = 0;
+	int	j = 0;
 	int	err_makefile = 0;
 
 	if(argc == 1)
@@ -63,6 +67,20 @@ int	main(int argc, char **argv)
 			strcat(tmp, mk_target);
 			strcat(tmp, basic_functions[i]);
 			err_makefile = system(tmp);
+			j = 0;
+			while (err_makefile == MAKE_ERR_2 && j != 24)
+			{
+				memset(tmp, 0, sizeof(tmp));
+				strcpy(tmp, cd);
+				strcat(tmp, mk_target2);
+				strcat(tmp, basic_functions[i]);
+				strcat(tmp, mk_target3);
+				strcat(tmp, basic_functions[j]);
+				err_makefile = system(tmp);	
+				printf("tmp_%i: %s\nbasic_functions2_: %s\n\n", j, tmp, basic_functions[j]);	
+				j++;
+			}
+			printf("num: %i\nbasic_function: %s\n", i, basic_functions[i]);
 			i++;
 		}
 	}

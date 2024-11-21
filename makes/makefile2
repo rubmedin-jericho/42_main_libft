@@ -6,16 +6,16 @@ DIR = src
 EXEC = ../auto_42_main.c
 NAME = mains
 TARGET ?= $(error "TARGET no especificado. Usa: make TARGET=<nombre>")
+TARGET_2 ?= $(error "TARGET no especificado. Usa: make TARGET=<nombre> TARGET_2=<nombre>")
 SOURCE = $(OUT_DIR)$(TARGET).c
+SOURCE_2 = $(OUT_DIR)$(TARGET_2).c
 MAIN = ../mains/main_$(TARGET).c 
 OBJECTS = ../src/$(TARGET).o
+OBJECTS_2 = ../src/$(TARGET_2).o
 
 .PHONY: all clean
 
 all: $(DIR) $(OUT_DIR)$(TARGET)
-
-$(OUT_DIR)$(NAME): $(HEADER) $(EXEC)
-	$(CC) $(FLAGS) $(EXECT) -o $(NAME)
 
 $(DIR):
 	@cd .. && mkdir -p $(DIR)
@@ -23,9 +23,12 @@ $(DIR):
 ../src/$(TARGET).o: $(SOURCE) $(HEADER)
 	$(CC) $(FLAGS) -c $< -o $@
 
-$(OUT_DIR)$(TARGET): $(OBJECTS) $(MAIN)
-	$(CC) $(FLAGS) $(MAIN) $(OBJECTS) -o $(OUT_DIR)$(TARGET)
+../src/$(TARGET_2).o: $(SOURCE_2) $(HEADER)
+	$(CC) $(FLAGS) -c $< -o $@
+
+$(OUT_DIR)$(TARGET): $(OBJECTS) $(OBJECTS_2) $(MAIN)
+	$(CC) $(FLAGS) $(MAIN) $(OBJECTS) $(OBJECTS_2)-o $(OUT_DIR)$(TARGET)
 
 clean:
 	rm -rf $(OUT_DIR)$(TARGET)
-	rm -rf $(OBJECTS) 
+	rm -rf $(OBJECTS) $(OBJECTS_2)
