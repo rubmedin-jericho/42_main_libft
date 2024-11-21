@@ -31,4 +31,4 @@ $(OUT_DIR)$(TARGET): $(OBJECTS) $(OBJECTS_2) $(MAIN)
 
 clean:
 	rm -rf $(OUT_DIR)$(TARGET)
-	rm -rf $(OBJECTS) $(OBJECTS_2)
+	rm -rf $(OBJECTS) $(OBJECTS_2) ../$(DIR)

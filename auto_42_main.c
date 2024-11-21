@@ -51,7 +51,7 @@ int	main(int argc, char **argv)
 	char	mk_target[50] = "make TARGET=";	
 	char	mk_target2[100] = "make -f makefile2 TARGET=";
 	char	mk_target3[50] = " TARGET_2=";
-	char	cd[50] = "cd makes && ";
+	char	cd[50] = "cd 42_main && cd makes && ";
 	char	tmp[50];
 	char	mk_clean[50] = "make clean TARGET=";
 	int	i = 0;
