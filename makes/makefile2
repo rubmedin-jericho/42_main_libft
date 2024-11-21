@@ -27,7 +27,7 @@ $(DIR):
 	$(CC) $(FLAGS) -c $< -o $@
 
 $(OUT_DIR)$(TARGET): $(OBJECTS) $(OBJECTS_2) $(MAIN)
-	$(CC) $(FLAGS) $(MAIN) $(OBJECTS) $(OBJECTS_2)-o $(OUT_DIR)$(TARGET)
+	$(CC) $(FLAGS) $(MAIN) $(OBJECTS) $(OBJECTS_2) -o $(OUT_DIR)$(TARGET)
 
 clean:
 	rm -rf $(OUT_DIR)$(TARGET)

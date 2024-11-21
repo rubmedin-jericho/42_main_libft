@@ -62,6 +62,7 @@ int	main(int argc, char **argv)
 	{
 		while(i < 24)
 		{
+			printf("num: %i\nbasic_function: %s\n", i, basic_functions[i]);
 			memset(tmp, 0, sizeof(tmp));
 			strcpy(tmp, cd);
 			strcat(tmp, mk_target);
@@ -80,7 +81,6 @@ int	main(int argc, char **argv)
 				printf("tmp_%i: %s\nbasic_functions2_: %s\n\n", j, tmp, basic_functions[j]);	
 				j++;
 			}
-			printf("num: %i\nbasic_function: %s\n", i, basic_functions[i]);
 			i++;
 		}
 	}
@@ -92,20 +92,26 @@ int	main(int argc, char **argv)
 			strcpy(tmp, cd);
 			strcat(tmp, mk_clean);
 			strcat(tmp, basic_functions[i]);
-			err_makefile = system(tmp);
+			system(tmp);
 			memset(tmp, 0, 50);
 			i++;
 		}
 	}
 	else if(argc == 2 && (select_funct(basic_functions, argv[1]) != SUCCES))
 	{
+		memset(tmp, 0, sizeof(tmp));
+		strcpy(tmp, cd);
 		strcat(mk_target, basic_functions[(select_funct(basic_functions, argv[1])) - 1]);
-		err_makefile = system(mk_target);
+		strcat(tmp, mk_target);
+		err_makefile = system(tmp);
 	}
 	else if(argc == 3 && (strcmp(argv[1], "clean") == SUCCES) && (select_funct(basic_functions, argv[2]) != SUCCES))
 	{
+		memset(tmp, 0, sizeof(tmp));
+		strcpy(tmp, cd);
 		strcat(mk_clean, basic_functions[(select_funct(basic_functions, argv[2])) - 1]);
-		err_makefile = system(mk_clean);
+		strcat(tmp, mk_clean);
+		err_makefile = system(tmp);
 	}
 	printf("finish\n");
 	return (SUCCES);
