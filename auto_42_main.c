@@ -54,6 +54,7 @@ int	main(int argc, char **argv)
 	char	cd[50] = "cd 42_main && cd makes && ";
 	char	tmp[50];
 	char	mk_clean[50] = "make clean TARGET=";
+	char	mk_clean_all[100] = "make clean_all TARGET=";
 	int	i = 0;
 	int	j = 0;
 	int	err_makefile = 0;
@@ -90,7 +91,7 @@ int	main(int argc, char **argv)
 		{
 			memset(tmp, 0, sizeof(tmp));
 			strcpy(tmp, cd);
-			strcat(tmp, mk_clean);
+			strcat(tmp, mk_clean_all);
 			strcat(tmp, basic_functions[i]);
 			system(tmp);
 			memset(tmp, 0, 50);

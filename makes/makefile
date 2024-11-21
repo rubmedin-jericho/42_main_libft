@@ -10,7 +10,7 @@ SOURCE = $(OUT_DIR)$(TARGET).c
 MAIN = ../mains/main_$(TARGET).c 
 OBJECTS = ../src/$(TARGET).o
 
-.PHONY: all clean
+.PHONY: all clean clean_all
 
 all: $(DIR) $(OUT_DIR)$(TARGET)
 
@@ -26,6 +26,9 @@ $(DIR):
 $(OUT_DIR)$(TARGET): $(OBJECTS) $(MAIN)
 	$(CC) $(FLAGS) $(MAIN) $(OBJECTS) -o $(OUT_DIR)$(TARGET)
 
+clean_all:
+	rm -rf $(OUT_DIR)$(TARGET) ../$(DIR)
+
 clean:
 	rm -rf $(OUT_DIR)$(TARGET)
-	rm -rf $(OBJECTS) ../$(DIR)
+	rm -rf $(OBJECTS)
