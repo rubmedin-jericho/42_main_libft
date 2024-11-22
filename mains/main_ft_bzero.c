@@ -6,11 +6,11 @@
 /*   By: rubmedin <rubmedin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 23:52:18 by rubmedin          #+#    #+#             */
-/*   Updated: 2024/11/11 19:16:17 by rubmedin         ###   ########.fr       */
+/*   Updated: 2024/11/22 14:34:35 by rubmedin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../libft.h"
+#include "../headers/libft.h"
 
 int     main(int argc, char **argv)                                
 {       
