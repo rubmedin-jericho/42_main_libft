@@ -23,21 +23,22 @@ int	select_funct(char **s1, char *s2)
 
 int	main(int argc, char **argv)
 {
-	char *basic_functions[24] = {"ft_memset",\
+	char *basic_functions[24] = {
+	"ft_tolower",\
+	"ft_toupper",\
+	"ft_isprint",\
+	"ft_isascii",\
+	"ft_isalnum",\
+	"ft_isdigit",\
+	"ft_isalpha",\
+	"ft_strlen",\
+	"ft_memset",\
 	"ft_bzero",\
 	"ft_memcpy",\
 	"ft_memccpy",\
 	"ft_memmove",\
 	"ft_memchr",\
 	"ft_memcmp",\
-	"ft_strlen",\
-	"ft_isalpha",\
-	"ft_isdigit",\
-	"ft_isalnum",\
-	"ft_isascii",\
-	"ft_isprint",\
-	"ft_toupper",\
-	"ft_tolower",\
 	"ft_strchr",\
 	"ft_strrchr",\
 	"ft_strncmp",\
@@ -51,12 +52,15 @@ int	main(int argc, char **argv)
 	char	mk_target[50] = "make TARGET=";	
 	char	mk_target2[100] = "make -f makefile2 TARGET=";
 	char	mk_target3[50] = " TARGET_2=";
+	char	mk_target4[100] = "make -f makefile3 TARGET=";
+	char	mk_target5[50] = " TARGET_3=";
 	char	cd[50] = "cd 42_main && cd makes && ";
 	char	tmp[50];
 	char	mk_clean[50] = "make clean TARGET=";
 	char	mk_clean_all[100] = "make clean_all TARGET=";
 	int	i = 0;
 	int	j = 0;
+	int	k = 0;
 	int	err_makefile = 0;
 
 	if(argc == 1)
@@ -79,6 +83,20 @@ int	main(int argc, char **argv)
 				strcat(tmp, mk_target3);
 				strcat(tmp, basic_functions[j]);
 				err_makefile = system(tmp);	
+				k = 0;
+				while (err_makefile == MAKE_ERR_2 && k != 24)
+				{
+					memset(tmp, 0, sizeof(tmp));
+					strcpy(tmp, cd);
+					strcat(tmp, mk_target4);
+					strcat(tmp, basic_functions[i]);
+					strcat(tmp, mk_target3);
+					strcat(tmp, basic_functions[j]);
+					strcat(tmp, mk_target5);
+					strcat(tmp, basic_functions[k]);
+					err_makefile = system(tmp);
+					k++;
+				}
 				printf("tmp_%i: %s\nbasic_functions2_: %s\n\n", j, tmp, basic_functions[j]);	
 				j++;
 			}

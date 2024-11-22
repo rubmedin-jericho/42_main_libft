@@ -17,23 +17,23 @@ OBJECTS_MAIN = ../src/main_$(TARGET).o
 all: $(DIR) $(OUT_DIR)$(TARGET)
 
 $(OUT_DIR)$(NAME): $(HEADER) $(EXEC)
-	$(CC) $(FLAGS) $(EXECT) -o $(NAME)
+	@$(CC) $(FLAGS) $(EXECT) -o $(NAME)
 
 $(DIR):
 	@cd .. && mkdir -p $(DIR)
 
 ../src/$(TARGET).o: $(SOURCE) $(HEADER)
-	$(CC) $(FLAGS) -c $< -o $@
+	@$(CC) $(FLAGS) -c $< -o $@
 
 ../src/main_$(TARGET).o: $(MAIN) $(HEADER_MAIN)
-	$(CC) $(FLAGS) -c $< -o $@
+	@$(CC) $(FLAGS) -c $< -o $@
 
 $(OUT_DIR)$(TARGET): $(OBJECTS) $(OBJECTS_MAIN)
-	$(CC) $(FLAGS) $(OBJECTS_MAIN) $(OBJECTS) -o $(OUT_DIR)$(TARGET)
+	@$(CC) $(FLAGS) $(OBJECTS_MAIN) $(OBJECTS) -o $(OUT_DIR)$(TARGET)
 
 clean_all:
-	rm -rf $(OUT_DIR)$(TARGET) ../$(DIR)
+	@rm -rf $(OUT_DIR)$(TARGET) ../$(DIR)
 
 clean:
-	rm -rf $(OUT_DIR)$(TARGET)
-	rm -rf $(OBJECTS) $(OBJECTS_MAIN)
+	@rm -rf $(OUT_DIR)$(TARGET)
+	@rm -rf $(OBJECTS) $(OBJECTS_MAIN)

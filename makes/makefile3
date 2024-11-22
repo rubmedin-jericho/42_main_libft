@@ -8,11 +8,14 @@ EXEC = ../auto_42_main.c
 NAME = mains
 TARGET ?= $(error "TARGET no especificado. Usa: make TARGET=<nombre>")
 TARGET_2 ?= $(error "TARGET no especificado. Usa: make TARGET=<nombre> TARGET_2=<nombre>")
+TARGET_3 ?=
 SOURCE = $(OUT_DIR)$(TARGET).c
 SOURCE_2 = $(OUT_DIR)$(TARGET_2).c
+SOURCE_3 = $(OUT_DIR)$(TARGET_3).c
 MAIN = ../mains/main_$(TARGET).c 
 OBJECTS = ../src/$(TARGET).o
 OBJECTS_2 = ../src/$(TARGET_2).o
+OBJECTS_3 = ../src/$(TARGET_3).o
 OBJECTS_MAIN = ../src/main_$(TARGET).o
 
 .PHONY: all clean clean_all
@@ -28,15 +31,18 @@ $(DIR):
 ../src/$(TARGET_2).o: $(SOURCE_2) $(HEADER)
 	@$(CC) $(FLAGS) -c $< -o $@
 
+../src/$(TARGET_3).o: $(SOURCE_3) $(HEADER)
+	@$(CC) $(FLAGS) -c $< -o $@)
+
 ../src/main_$(TARGET).o: $(MAIN) $(HEADER_MAIN)
 	@$(CC) $(FLAGS) -c $< -o $@
 
-$(OUT_DIR)$(TARGET): $(OBJECTS) $(OBJECTS_2) $(OBJECTS_MAIN)
-	@$(CC) $(FLAGS) $(OBJECTS) $(OBJECTS_2) $(OBJECTS_MAIN) -o $(OUT_DIR)$(TARGET)
+$(OUT_DIR)$(TARGET): $(OBJECTS) $(OBJECTS_2) $(OBJECTS_3) $(OBJECTS_MAIN)
+	@$(CC) $(FLAGS) $(OBJECTS) $(OBJECTS_2) $(OBJECTS_3) $(OBJECTS_MAIN) -o $(OUT_DIR)$(TARGET)
 
 clean_all:
 	@rm -rf $(OUT_DIR)$(TARGET) ../$(DIR)
 
 clean:
 	@rm -rf $(OUT_DIR)$(TARGET)
-	@rm -rf $(OBJECTS) $(OBJECTS_2) $(OBJECTS_MAIN)
+	@rm -rf $(OBJECTS) $(OBJECTS_2) $(OBJECTS_3) $(OBJECTS_MAIN)
